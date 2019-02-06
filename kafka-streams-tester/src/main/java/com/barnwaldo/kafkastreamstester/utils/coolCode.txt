@@ -1,0 +1,24 @@
+//            input.foreach((Object key, Continuous value) -> {
+//                System.out.println("\nKAFKA STREAM input -- " + key + "\nfeatures: " + Arrays.toString(value.getFeature())
+//                        + "\nclass:  " + value.getResult());
+//                System.out.println("Logistic Regression Classification: " + Analytics.getInstance().predict(value));
+//            });
+//            *** Sample code to make table from stream ***
+//
+//            KTable<String, Long> table = stream.groupByKey().reduce(
+//                    new Reducer<Long>() {
+//                @Override
+//                public Long apply(Long aggValue, Long newValue) {
+//                    return newValue;
+//                }
+//            },
+//                    "dummy-aggregation-store");
+
+//            KStream<Object, String> ostream = input
+//                    .peek((key, value) -> {
+//                        System.out.println("\nKAFKA STREAM input -- " + key + "\nfeatures: " + Arrays.toString(value.getFeature()));
+//                    })
+//                    .mapValues(value -> "Logistic Regression Classification: " + Analytics.getInstance().predict(value))
+//                    .peek((key, value) -> {
+//                        System.out.println("Mapped Stream -- " + key + " -- value: " + value);
+//                    });

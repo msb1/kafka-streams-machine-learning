@@ -1,0 +1,57 @@
+buildscript {
+	ext {
+		springBootVersion = '2.1.2.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.barnwaldo'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' }
+}
+
+ext {
+	set('springCloudVersion', 'Greenwich.RC2')
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.apache.kafka:kafka-streams'
+	implementation 'org.springframework.cloud:spring-cloud-stream'
+	implementation 'org.springframework.cloud:spring-cloud-stream-binder-kafka'
+	implementation 'org.springframework.cloud:spring-cloud-stream-binder-kafka-streams'
+	implementation 'org.springframework.kafka:spring-kafka'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor "org.projectlombok:lombok:1.18.4"
+	
+    compile group: 'org.nd4j', name: 'nd4j-native-platform', version: '1.0.0-beta3'
+    compile group: 'org.nd4j', name: 'nd4j-tensorflow', version: '1.0.0-beta3'
+    compile group: 'org.bytedeco.javacpp-presets', name: 'tensorflow-platform', version: '1.12.0-1.4.4'
+    compile group: 'org.deeplearning4j', name: 'deeplearning4j-modelimport', version: '1.0.0-beta3'
+    // compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+    // compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+	
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	// testImplementation 'org.springframework.cloud:spring-cloud-stream-test-support'
+	testImplementation 'org.springframework.kafka:spring-kafka-test'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
