@@ -6,3 +6,5 @@
 * The classification is performed real-time on the Kafka Stream as data arrive arrives at the stream; the output classification is then grouped and counted in a KTable and converted back to a KStream which is output and read by a standard Spring KafkaListener (consumer)
 * Input data to the Kafka Stream is generated with a Python script using Kafka-Python and SciKits Learn
 * Another Python script is also included that was used to train the NN model
+* Random Forest with GINI impurity, Support Vector Machines (using LibSVM for Java), Gaussian Naive Bayes and Multinomial Naive Bayes models are also included in this repo
+
